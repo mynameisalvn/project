@@ -1984,7 +1984,7 @@ progress {
   vertical-align: bottom;
 }
 .table > :not(:first-child), .dataTable-table > :not(:first-child) {
-  border-top: 2px solid currentColor;
+  border-top: 0;
 }
 
 .caption-top {

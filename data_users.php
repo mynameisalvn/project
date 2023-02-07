@@ -6,8 +6,10 @@ if(empty($_SESSION['username']) or empty($_SESSION['level'])){
             document.location='login.php'</script>";
 }
 
-
-
+if(($_SESSION['level'] != 'admin')){
+    echo "<script>alert('Anda tidak memiliki akses')
+            document.location='login.php'</script>";
+}
 
 ?>
 <!DOCTYPE html>
@@ -44,9 +46,9 @@ if(empty($_SESSION['username']) or empty($_SESSION['level'])){
             </ul>
         </nav>
         <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
+            <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
+                <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Home</div>
                             <a class="nav-link" href="home.php">
@@ -97,41 +99,63 @@ if(empty($_SESSION['username']) or empty($_SESSION['level'])){
                     </div>
                 </nav>
             </div>
-
+                              
             <!-- ISI KONTENT -->
             <div id="layoutSidenav_content">
+                    <?php 
+                        $data_akun = mysqli_query($conn,"SELECT * FROM user ORDER BY id");
+                    ?>
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4 mb-4">Welcome, <?php echo $_SESSION['username']?></h1>
-                        <!-- <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol> -->
-                        <div class="row">
-                            
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Area Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Bar Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                                </div>
+                        <h1 class="mt-4">Data User</h1>
+                        <hr>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                            <table class="table table-bordered table-striped mt-3">
+                                <a href="add.php"><button type="button" class="btn btn-success"><i class="fas fa-plus"></i> Create User </button></a>
+                                <thead>
+                                    <tr>
+                                        <th scope='col'>No</th>
+                                        <th scope='col'>Username</th>
+                                        <th scope='col'>Nama Pengguna</th>
+                                        <th scope='col'>Password</th>
+                                        <th scope='col'>Level</th>
+                                        <th scope='col'>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <?php
+                                        $no =1;
+                                        while($akun = mysqli_fetch_array($data_akun)){
+                                            $id = $akun['id'];
+                                            $username = $akun['username'];
+                                            $nama = $akun['nama'];
+                                            $pass = $akun['password'];
+                                            $level =$akun['level'];
+
+                                            ?>
+                                            <tr>
+                                            <td scope="row"><?php echo $no++ ?></td>
+                                            <td scope="row"><?php echo $username ?></td>
+                                            <td scope="row"><?php echo $nama ?></td>
+                                            <td scope="row">Password Ter-enkripsi</td>
+                                            <td scope="row"><?php echo $level ?></td>
+                                            <td scope="row">
+                                            <a href="edit.php?op=edit&id=<?php echo $id ?>"><button type="button" class="btn btn-success">Edit</button></a>
+                                            <a href="contact.php?op=delete&id=<?php echo $id ?>"onclick="return confirm ('Apakah Ingin Menghapus Data?')"><button type="button" class="btn btn-danger">Delete</button></a>
+                                            
+                                            </td>
+                                        </tr>
+                                            <?php
+                                        }
+                                        ?>
+                                </tbody>
+                            </table>
                             </div>
                         </div>
                     </div>
                 </main>
-                <!-- FOOTER-->
+                <!-- FOOTER -->
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
