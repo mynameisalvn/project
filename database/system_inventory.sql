@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2023 at 08:01 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.33
+-- Waktu pembuatan: 12 Feb 2023 pada 16.59
+-- Versi server: 10.4.14-MariaDB
+-- Versi PHP: 7.2.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,43 +24,47 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `username` varchar(30) NOT NULL,
+  `nama` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `level` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `level`) VALUES
-(3, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin'),
-(4, 'Alpin', '202cb962ac59075b964b07152d234b70', 'user');
+INSERT INTO `user` (`id`, `username`, `nama`, `password`, `level`) VALUES
+(3, 'admin', 'Admin', '21232f297a57a5a743894a0e4a801fc3', 'admin'),
+(4, 'alpin', 'Alpin Rezha Mulyadi', 'e10adc3949ba59abbe56e057f20f883e', 'admin'),
+(6, 'rizky07', 'Rizky Andita', 'e10adc3949ba59abbe56e057f20f883e', 'user'),
+(12, 'bayu', 'Bayu', 'e10adc3949ba59abbe56e057f20f883e', 'accounting'),
+(13, 'ferdi', 'Ferdi Sambo', 'e10adc3949ba59abbe56e057f20f883e', 'gudang');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
