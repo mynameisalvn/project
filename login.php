@@ -70,7 +70,7 @@ if( isset($_POST["login"]) ){
                         <div class="card-body text-center">
 
                             <div class="mb-md-3 mt-md-2 pb-3">
-                                <img src="img/logo1.png" class="rounded" alt="" width="200" height="160">
+                                <img src="img/solar.png" class="rounded" alt="" width="160" height="155">
                                 <h2 class="fw-bold mb-3 mt-3 text-uppercase">Login Page</h2>
                                 <form action="" method="post">
                                     <div class="form-outline form-white mt-5 mb-4">
